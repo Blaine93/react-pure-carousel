@@ -56,17 +56,20 @@ class Example extends Component {
 | duration | number | 1 | Transition duration for slides. `1` means 1 second |
 | interval | number | null | Sets the interval between automatic slides scrolling. If value is `1000` it indicates 1 second. If value is `null` then auto scrolling disabled |
 | className | string |   | Custom class names |
+
 ###Carousel.Background
 | Name | Type | Default | Description |
 | ------------ | ------------ | ------------ | ------------ |
 | src | string |   | Image path for using as background image |
 | color | string | transparent | Background color for carousel |
 | className | string |   | Custom class names |
+
 ###Carousel.Item
 | Name | Type | Default | Description |
 | ------------ | ------------ | ------------ | ------------ |
 | backgroundColor | string |  | Background color for certain carousel item |
 | className | string |   | Custom class names |
+
 ###Carousel.Caption
 | Name | Type | Default | Description |
 | ------------ | ------------ | ------------ | ------------ |
