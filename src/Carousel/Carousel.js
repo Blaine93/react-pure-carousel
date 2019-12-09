@@ -117,12 +117,20 @@ export class Carousel extends React.Component {
   }
 
   render() {
-    const { className, children } = this.props;
+    const {
+      className,
+      children,
+      looped,
+      leftArrow,
+      rightArrow
+    } = this.props;
     const { items, activeSlide } = this.state;
 
     if (!children) {
       return <div />;
     }
+
+    const itemsWithoutClones = items.filter(item => !item.clone);
 
     return (
       <div className={`${styles.carousel} ${this.themeClass} ${className || ''}`}>
@@ -141,11 +149,23 @@ export class Carousel extends React.Component {
         </div>
         {items.length > 1 && (
           <React.Fragment>
-            <button onClick={() => this.prev()} type="button" className={`${styles.buttonArrow} ${styles.buttonArrowLeft}`}>
-              <span className={`${styles.arrow} ${styles.arrowLeft}`} />
+            <button
+              onClick={() => this.prev()}
+              type="button"
+              className={`${styles.buttonArrow} ${styles.buttonArrowLeft}`}
+              disabled={!looped && activeSlide === 0}
+            >
+              {leftArrow}
+              {!leftArrow && <span className={`${styles.arrow} ${styles.arrowLeft}`} />}
             </button>
-            <button onClick={() => this.next()} type="button" className={`${styles.buttonArrow} ${styles.buttonArrowRight}`}>
-              <span className={`${styles.arrow} ${styles.arrowRight}`} />
+            <button
+              onClick={() => this.next()}
+              type="button"
+              className={`${styles.buttonArrow} ${styles.buttonArrowRight}`}
+              disabled={!looped && activeSlide === itemsWithoutClones.length - 1}
+            >
+              {rightArrow}
+              {!rightArrow && <span className={`${styles.arrow} ${styles.arrowRight}`} />}
             </button>
           </React.Fragment>
         )}
@@ -162,6 +182,15 @@ Carousel.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object
+  ]),
+  looped: PropTypes.bool.isRequired,
+  leftArrow: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.elementType
+  ]),
+  rightArrow: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.elementType
   ])
 };
 
@@ -170,5 +199,8 @@ Carousel.defaultProps = {
   duration: 1,
   theme: 'light',
   interval: null,
-  children: null
+  children: null,
+  looped: true,
+  leftArrow: null,
+  rightArrow: null
 };

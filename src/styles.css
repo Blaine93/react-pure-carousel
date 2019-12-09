@@ -29,6 +29,11 @@
   opacity: 1;
 }
 
+.buttonArrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
 .buttonArrow.buttonArrowLeft {
   left: 0;
 }
