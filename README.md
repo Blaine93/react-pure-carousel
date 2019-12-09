@@ -2,7 +2,7 @@
 
 > Simple React Carousel Library
 
-[![NPM](https://img.shields.io/npm/v/react-pure-carousel.svg)](https://www.npmjs.com/package/react-pure-carousel) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![downloads](https://img.shields.io/npm/dm/react-pure-carousel.svg?style=flat-square)](http://www.npmtrends.com/react-pure-carousel) [![MIT License](https://img.shields.io/npm/l/react-pure-carousel.svg?style=flat-square)](https://github.com/Blaine93/react-pure-carousel/blob/master/LICENSE)
+[![NPM](https://img.shields.io/npm/v/react-pure-carousel.svg)](https://www.npmjs.com/package/react-pure-carousel) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![downloads](https://img.shields.io/npm/dm/react-pure-carousel.svg)](http://www.npmtrends.com/react-pure-carousel) [![MIT License](https://img.shields.io/npm/l/react-pure-carousel.svg)](https://github.com/Blaine93/react-pure-carousel/blob/master/LICENSE)
 
 ## Install
 
