@@ -186,11 +186,11 @@ Carousel.propTypes = {
   looped: PropTypes.bool.isRequired,
   leftArrow: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.elementType
+    PropTypes.element
   ]),
   rightArrow: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.elementType
+    PropTypes.element
   ])
 };
 
