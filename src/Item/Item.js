@@ -10,8 +10,20 @@ export const Item = ({
   isPrev,
   isAnimated,
   duration = 1,
-  backgroundColor
+  backgroundColor,
+  backgroundImage
 }) => {
+  const getStyles = () => {
+    let styles = {};
+    if (backgroundImage) {
+      styles = { ...styles, backgroundImage: `url(${backgroundImage})` };
+    }
+    if (backgroundColor) {
+      styles = { ...styles, backgroundColor };
+    }
+    return styles;
+  };
+
   return (
     <div
       className={`${styles.carouselItem} ${
@@ -27,7 +39,7 @@ export const Item = ({
         WebkitTransitionDuration: `${duration}s`,
         OTransitionDuration: `${duration}s`,
         transitionDuration: `${duration}s`,
-        backgroundColor: backgroundColor || 'transparent'
+        ...getStyles()
       }}
     >
       {children}
@@ -46,7 +58,8 @@ Item.propTypes = {
     PropTypes.array,
     PropTypes.object
   ]),
-  backgroundColor: PropTypes.string
+  backgroundColor: PropTypes.string,
+  backgroundImage: PropTypes.string
 };
 
 Item.defaultProps = {
@@ -56,5 +69,6 @@ Item.defaultProps = {
   isAnimated: false,
   duration: 1,
   className: null,
-  backgroundColor: null
+  backgroundColor: null,
+  backgroundImage: null
 };

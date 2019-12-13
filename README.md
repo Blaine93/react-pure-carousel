@@ -74,6 +74,7 @@ class Example extends Component {
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | backgroundColor | string |  | Background color for certain carousel item |
+| backgroundImage | string |  | Background image for certain carousel item |
 | className | string |   | Custom class names |
 ### Carousel.Caption
 #### Component with custom content to display inside Carousel.Item with specific alignment
