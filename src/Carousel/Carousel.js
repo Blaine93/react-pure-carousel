@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Item } from '../Item';
 import { Caption } from '../Caption';
 import { Background } from '../Background';
+import { Arrow } from '../Arrow';
+import { Pagination } from '../Pagination';
 import styles from '../styles.css';
 
 export class Carousel extends React.Component {
@@ -98,12 +100,6 @@ export class Carousel extends React.Component {
     return styles.light;
   }
 
-  get pageWidth() {
-    const { items } = this.state;
-    const filteredItems = items.filter(item => !item.clone);
-    return 100 / filteredItems.length;
-  }
-
   _renderItem = (ch, index) => {
     const { duration } = this.props;
     const { items, activeSlide, animatedSlide } = this.state;
@@ -122,7 +118,9 @@ export class Carousel extends React.Component {
       children,
       looped,
       leftArrow,
-      rightArrow
+      rightArrow,
+      hidePagination,
+      ...props
     } = this.props;
     const { items, activeSlide } = this.state;
 
@@ -133,40 +131,27 @@ export class Carousel extends React.Component {
     const itemsWithoutClones = items.filter(item => !item.clone);
 
     return (
-      <div className={`${styles.carousel} ${this.themeClass} ${className || ''}`}>
+      <div className={`${styles.carousel} ${this.themeClass} ${className || ''}`} {...props}>
         {Array.isArray(children) && children.filter((ch) => ch.type === Background)}
         {React.Children.map(items, (ch, index) => this._renderItem(ch, index))}
-        <div className={styles.pagination}>
-          {items.map((item, index) => (
-            !item.clone && (
-              <div
-                key={index}
-                className={index === activeSlide || items[activeSlide].actualInd === index ? styles.active : ''}
-                style={{ width: `calc(${this.pageWidth}% - 10px)` }}
-              />
-            )
-          ))}
-        </div>
+        {!hidePagination && <Pagination
+          slides={items}
+          activeSlide={activeSlide}
+        />}
         {items.length > 1 && (
           <React.Fragment>
-            <button
+            <Arrow
               onClick={() => this.prev()}
-              type="button"
-              className={`${styles.buttonArrow} ${styles.buttonArrowLeft}`}
               disabled={!looped && activeSlide === 0}
-            >
-              {leftArrow}
-              {!leftArrow && <span className={`${styles.arrow} ${styles.arrowLeft}`} />}
-            </button>
-            <button
+              renderArrow={leftArrow}
+              direction="left"
+            />
+            <Arrow
               onClick={() => this.next()}
-              type="button"
-              className={`${styles.buttonArrow} ${styles.buttonArrowRight}`}
               disabled={!looped && activeSlide === itemsWithoutClones.length - 1}
-            >
-              {rightArrow}
-              {!rightArrow && <span className={`${styles.arrow} ${styles.arrowRight}`} />}
-            </button>
+              renderArrow={rightArrow}
+              direction="right"
+            />
           </React.Fragment>
         )}
       </div>
@@ -191,7 +176,8 @@ Carousel.propTypes = {
   rightArrow: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element
-  ])
+  ]),
+  hidePagination: PropTypes.bool
 };
 
 Carousel.defaultProps = {
@@ -202,5 +188,6 @@ Carousel.defaultProps = {
   children: null,
   looped: true,
   leftArrow: null,
-  rightArrow: null
+  rightArrow: null,
+  hidePagination: false
 };

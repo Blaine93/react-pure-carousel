@@ -5,7 +5,8 @@ import styles from '../styles.css';
 export const Caption = ({
   children,
   className = null,
-  alignItems
+  alignItems,
+  ...props
 }) => {
   const getStyles = () => {
     let styles = {};
@@ -26,6 +27,7 @@ export const Caption = ({
     <div
       className={`${styles.carouselCaption} ${className || ''}`}
       style={getStyles()}
+      {...props}
     >
       {children}
     </div>

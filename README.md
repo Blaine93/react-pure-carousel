@@ -61,6 +61,7 @@ class Example extends Component {
 | looped | bool | true | Slides looped inside carousel or not. Available options: `true`, `false` |
 | leftArrow | string &#124;&#124; react.element | null | Custom left arrow element |
 | rightArrow | string &#124;&#124; react.element | null | Custom right arrow element |
+| hidePagination | bool | false | Whether show or hide pagination at the bottom |
 | className | string |   | Custom class names |
 ### Carousel.Background
 #### Layer for carousel static background

@@ -11,7 +11,8 @@ export const Item = ({
   isAnimated,
   duration = 1,
   backgroundColor,
-  backgroundImage
+  backgroundImage,
+  ...props
 }) => {
   const getStyles = () => {
     let styles = {};
@@ -41,6 +42,7 @@ export const Item = ({
         transitionDuration: `${duration}s`,
         ...getStyles()
       }}
+      {...props}
     >
       {children}
     </div>

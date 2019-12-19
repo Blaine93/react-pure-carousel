@@ -5,7 +5,8 @@ import styles from '../styles.css';
 export const Background = ({
   src = null,
   className = null,
-  color = null
+  color = null,
+  ...props
 }) => {
   const getStyles = () => {
     let styles = {};
@@ -22,6 +23,7 @@ export const Background = ({
     <div
       className={`${styles.carouselBackground} ${className || ''}`}
       style={getStyles()}
+      {...props}
     />
   );
 };

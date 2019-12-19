@@ -54,11 +54,11 @@
   border-color: #333333;
 }
 
-.arrowLeft {
+.buttonArrow.buttonArrowLeft .arrow {
   transform: rotate(-135deg);
 }
 
-.arrowRight {
+.buttonArrow.buttonArrowRight .arrow {
   transform: rotate(45deg);
 }
 
