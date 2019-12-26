@@ -72,24 +72,32 @@ export class Carousel extends React.Component {
 
   static Background = Background;
 
+  get prevActiveSlide() {
+    const { activeSlide, items } = this.state;
+    return activeSlide === 0 ? items.length - 1 : activeSlide - 1;
+  }
+
+  get nextActiveSlide() {
+    const { activeSlide, items } = this.state;
+    return activeSlide === items.length - 1 ? 0 : activeSlide + 1;
+  }
+
   prev() {
+    const newActiveSlide = this.prevActiveSlide;
+    this.beforeSlideCallback(newActiveSlide);
     this.setState((prevState) => ({
       activeSlide: prevState.activeSlide === 0 ? prevState.items.length - 1 : prevState.activeSlide - 1,
       animatedSlide: prevState.activeSlide
-    }));
+    }), this.afterSlideCallback);
   }
 
   next() {
+    const newActiveSlide = this.nextActiveSlide;
+    this.beforeSlideCallback(newActiveSlide);
     this.setState((prevState) => ({
       activeSlide: prevState.activeSlide === prevState.items.length - 1 ? 0 : prevState.activeSlide + 1,
       animatedSlide: prevState.activeSlide
-    }));
-  }
-
-  changeSlide(index) {
-    this.setState({
-      activeSlide: index
-    });
+    }), this.afterSlideCallback);
   }
 
   get themeClass() {
@@ -98,6 +106,18 @@ export class Carousel extends React.Component {
       return styles.dark;
     }
     return styles.light;
+  }
+
+  afterSlideCallback = () => {
+    const { afterSlide, duration } = this.props;
+    const { activeSlide } = this.state;
+    setTimeout(() => afterSlide({ activeSlide }), duration * 1000);
+  }
+
+  beforeSlideCallback = (newActiveSlide) => {
+    const { beforeSlide } = this.props;
+    const { activeSlide } = this.state;
+    beforeSlide({ activeSlide, newActiveSlide });
   }
 
   _renderItem = (ch, index) => {
@@ -120,6 +140,8 @@ export class Carousel extends React.Component {
       leftArrow,
       rightArrow,
       hidePagination,
+      afterSlide,
+      beforeSlide,
       ...props
     } = this.props;
     const { items, activeSlide } = this.state;
@@ -177,7 +199,9 @@ Carousel.propTypes = {
     PropTypes.string,
     PropTypes.element
   ]),
-  hidePagination: PropTypes.bool
+  hidePagination: PropTypes.bool,
+  afterSlide: PropTypes.func,
+  beforeSlide: PropTypes.func
 };
 
 Carousel.defaultProps = {
@@ -189,5 +213,7 @@ Carousel.defaultProps = {
   looped: true,
   leftArrow: null,
   rightArrow: null,
-  hidePagination: false
+  hidePagination: false,
+  afterSlide() {},
+  beforeSlide() {}
 };

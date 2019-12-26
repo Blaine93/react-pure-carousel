@@ -22,6 +22,14 @@ export const Item = ({
     if (backgroundColor) {
       styles = { ...styles, backgroundColor };
     }
+    if (duration) {
+      styles = {
+        ...styles,
+        WebkitTransitionDuration: `${duration}s`,
+        OTransitionDuration: `${duration}s`,
+        transitionDuration: `${duration}s`
+      };
+    }
     return styles;
   };
 
@@ -36,12 +44,7 @@ export const Item = ({
       } ${
         !isAnimated ? styles.notAnimated : ''
       } ${className || ''}`}
-      style={{
-        WebkitTransitionDuration: `${duration}s`,
-        OTransitionDuration: `${duration}s`,
-        transitionDuration: `${duration}s`,
-        ...getStyles()
-      }}
+      style={getStyles()}
       {...props}
     >
       {children}
