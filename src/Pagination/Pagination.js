@@ -6,6 +6,8 @@ export const Pagination = ({
   slides,
   className,
   activeSlide,
+  vertical,
+  alignOpposite,
   ...props
 }) => {
   const pageWidth = () => {
@@ -14,13 +16,13 @@ export const Pagination = ({
   };
 
   return (
-    <div className={`${styles.pagination} ${className || ''}`} {...props}>
+    <div className={`${styles.pagination} ${alignOpposite ? styles.opposite : ''} ${className || ''}`} {...props}>
       {slides.map((slide, index) => (
         !slide.clone && (
           <div
             key={index}
             className={index === activeSlide || slides[activeSlide].actualInd === index ? styles.active : ''}
-            style={{ width: `calc(${pageWidth()}% - 10px)` }}
+            style={vertical ? { height: `calc(${pageWidth()}% - 10px)` } : { width: `calc(${pageWidth()}% - 10px)` }}
           />
         )
       ))}
@@ -31,11 +33,15 @@ export const Pagination = ({
 Pagination.propTypes = {
   className: PropTypes.string,
   slides: PropTypes.array,
-  activeSlide: PropTypes.number
+  activeSlide: PropTypes.number,
+  vertical: PropTypes.bool,
+  alignOpposite: PropTypes.bool
 };
 
 Pagination.defaultProps = {
   className: null,
   slides: [],
-  activeSlide: 0
+  activeSlide: 0,
+  vertical: false,
+  alignOpposite: false
 };

@@ -1,17 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  LEFT, RIGHT, TOP, BOTTOM
+} from '../constants/direction';
 import styles from '../styles.css';
 
 export const Arrow = ({
   renderArrow,
   disabled,
   onClick,
-  direction = 'left',
+  direction = LEFT,
   className,
   ...props
 }) => {
   const arrowClassName = () => {
-    return direction === 'left' ? styles.buttonArrowLeft : styles.buttonArrowRight;
+    switch (direction) {
+      case LEFT:
+        return styles.buttonArrowLeft;
+      case TOP:
+        return styles.buttonArrowTop;
+      case BOTTOM:
+        return styles.buttonArrowBottom;
+      default:
+        return styles.buttonArrowRight;
+    }
   };
 
   return (
@@ -36,7 +48,7 @@ Arrow.propTypes = {
   ]),
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  direction: PropTypes.oneOf(['left', 'right'])
+  direction: PropTypes.oneOf([LEFT, RIGHT, TOP, BOTTOM])
 };
 
 Arrow.defaultProps = {

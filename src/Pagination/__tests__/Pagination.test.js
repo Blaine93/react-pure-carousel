@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, configure, mount } from 'enzyme';
+import { shallow, configure } from 'enzyme';
 import clone from 'clone';
 import Adapter from 'enzyme-adapter-react-16';
 import { Pagination } from '../Pagination';
@@ -19,7 +19,7 @@ describe('<Pagination />', () => {
   });
 
   it('Pagination.pageWidth should return 25 width for active Item', () => {
-    const wrapper = shallow((
+    const wrapper = shallow(
       <Pagination
         {...props}
         slides={[
@@ -30,12 +30,12 @@ describe('<Pagination />', () => {
         ]}
         activeSlide={0}
       />
-    ));
+    );
     expect(wrapper.find('.active').prop('style')).toHaveProperty('width', 'calc(25% - 10px)');
   });
 
   it('should display only 2 items', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <Pagination
         {...props}
         slides={[
@@ -51,7 +51,7 @@ describe('<Pagination />', () => {
   });
 
   it('should be active first item if clone with actualInd = 0 is active', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <Pagination
         {...props}
         slides={[

@@ -42,6 +42,17 @@
   right: 0;
 }
 
+.buttonArrow.buttonArrowTop {
+  top: 0;
+  left: calc((100% - 100px) / 2);
+}
+
+.buttonArrow.buttonArrowBottom {
+  top: auto;
+  bottom: 0;
+  left: calc((100% - 100px) / 2);
+}
+
 .arrow {
   display: inline-block;
   width: 30px;
@@ -62,6 +73,14 @@
   transform: rotate(45deg);
 }
 
+.buttonArrow.buttonArrowTop .arrow {
+  transform: rotate(-45deg);
+}
+
+.buttonArrow.buttonArrowBottom .arrow {
+  transform: rotate(135deg);
+}
+
 .pagination {
   position: absolute;
   bottom: 0;
@@ -72,6 +91,25 @@
   box-sizing: border-box;
   left: 0;
   z-index: 11;
+}
+
+.pagination.opposite {
+  bottom: auto;
+  top: 0;
+}
+
+.carousel.vertical .pagination {
+  width: auto;
+  padding: 15% 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel.vertical .pagination.opposite {
+  left: auto;
+  right: 0;
 }
 
 .pagination div {
@@ -89,6 +127,15 @@
   transition: .3s all ease;
 }
 
+.carousel.vertical .pagination div {
+  max-height: 40px;
+  min-height: 4px;
+  display: block;
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .carousel.dark .pagination div {
   background-color: #333333;
 }
@@ -104,38 +151,67 @@
   text-align: center;
   height: 100%;
   position: absolute;
-  top: 0;
   display: none;
   z-index: 10;
   box-sizing: border-box;
-  padding: 30px 0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+.carousel.horizontal .carouselItem {
+  bottom: 0;
+  padding: 30px 0;
+}
+
+.carousel.vertical .carouselItem {
+  left: 0;
+  padding: 0 30px;
+}
+
 .carouselItem.next {
-  left: 100%;
   display: block;
   -webkit-transition: 1s all ease;
   -o-transition: 1s all ease;
   transition: 1s all ease;
 }
 
+.carousel.horizontal .carouselItem.next {
+  left: 100%;
+}
+
+.carousel.vertical .carouselItem.next {
+  top: 100%;
+}
+
 .carouselItem.prev {
-  left: -100%;
   display: block;
   -webkit-transition: 1s all ease;
   -o-transition: 1s all ease;
   transition: 1s all ease;
+}
+
+.carousel.horizontal .carouselItem.prev {
+  left: -100%;
+}
+
+.carousel.vertical .carouselItem.prev {
+  top: -100%;
 }
 
 .carouselItem.active {
   display: block;
-  left: 0;
   -webkit-transition: 1s all ease;
   -o-transition: 1s all ease;
   transition: 1s all ease;
+}
+
+.carousel.horizontal .carouselItem.active {
+  left: 0;
+}
+
+.carousel.vertical .carouselItem.active {
+  top: 0;
 }
 
 .carouselItem.notAnimated {

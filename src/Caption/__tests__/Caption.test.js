@@ -17,4 +17,37 @@ describe('<Caption />', () => {
     const wrapper = shallow(<Caption {...props} />);
     expect(wrapper.exists()).toBe(true);
   });
+
+  it('should align content at the top', () => {
+    const wrapper = shallow(
+      <Caption
+        {...props}
+        alignItems="top"
+      />
+    );
+    const styles = wrapper.find('div').prop('style');
+    expect(styles['justifyContent']).toEqual('flex-start');
+  });
+
+  it('should align content at the top', () => {
+    const wrapper = shallow(
+      <Caption
+        {...props}
+        alignItems="top"
+      />
+    );
+    const styles = wrapper.find('div').prop('style');
+    expect(styles['justifyContent']).toEqual('flex-start');
+  });
+
+  it('should align content at the bottom', () => {
+    const wrapper = shallow(
+      <Caption
+        {...props}
+        alignItems="bottom"
+      />
+    );
+    const styles = wrapper.find('div').prop('style');
+    expect(styles['justifyContent']).toEqual('flex-end');
+  });
 });

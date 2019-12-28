@@ -59,11 +59,13 @@ class Example extends Component {
 | duration | number | 1 | Transition duration for slides. `1` means 1 second |
 | interval | number | null | Sets the interval between automatic slides scrolling. If value is `1000` it indicates 1 second. If value is `null` then auto scrolling disabled |
 | looped | bool | true | Whether slides looped inside carousel or not. Available options: `true`, `false` |
-| leftArrow | string &#124;&#124; HTML element | null | Custom left arrow element |
-| rightArrow | string &#124;&#124; HTML element | null | Custom right arrow element |
+| prevArrow | string &#124;&#124; HTML element | null | Custom arrow element that leading to the previous slide |
+| nextArrow | string &#124;&#124; HTML element | null | Custom arrow element that leading to the next slide |
 | hidePagination | bool | false | Whether show or hide pagination at the bottom |
 | afterSlide | func |  | Hook to be called after a slide is changed |
 | beforeSlide | func |  | Hook to be called before a slide is changed |
+| vertical | bool | false | Vertical mode for Carousel |
+| alignPaginationOpposite | bool | false | Whether display pagination on the opposite side of Carousel or not |
 ### Carousel.Background
 #### Layer for carousel static background
 | Name | Type | Default | Description |

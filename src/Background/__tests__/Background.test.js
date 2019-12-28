@@ -17,4 +17,17 @@ describe('<Background />', () => {
     const wrapper = shallow(<Background {...props} />);
     expect(wrapper.exists()).toBe(true);
   });
+
+  it('should have styles for backgroundColor and backgroundImage', () => {
+    const wrapper = shallow(
+      <Background
+        {...props}
+        color="#FF0000"
+        src="image_src"
+      />
+    );
+    const styles = wrapper.find('div').prop('style');
+    expect(styles['backgroundImage']).toEqual('url(image_src)');
+    expect(styles['backgroundColor']).toEqual('#FF0000');
+  });
 });

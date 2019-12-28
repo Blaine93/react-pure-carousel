@@ -17,4 +17,15 @@ describe('<Arrow />', () => {
     const wrapper = shallow(<Arrow {...props} />);
     expect(wrapper.exists()).toBe(true);
   });
+
+  it('should have custom component for arrow', () => {
+    const wrapper = shallow(
+      <Arrow
+        {...props}
+        renderArrow={<div>Next</div>}
+        direction="right"
+      />
+    );
+    expect(wrapper.find('button').children().at(0).contains(<div>Next</div>)).toBe(true);
+  });
 });

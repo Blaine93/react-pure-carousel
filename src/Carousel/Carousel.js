@@ -5,6 +5,9 @@ import { Caption } from '../Caption';
 import { Background } from '../Background';
 import { Arrow } from '../Arrow';
 import { Pagination } from '../Pagination';
+import {
+  LEFT, RIGHT, TOP, BOTTOM
+} from '../constants/direction';
 import styles from '../styles.css';
 
 export class Carousel extends React.Component {
@@ -137,11 +140,13 @@ export class Carousel extends React.Component {
       className,
       children,
       looped,
-      leftArrow,
-      rightArrow,
+      prevArrow,
+      nextArrow,
       hidePagination,
       afterSlide,
       beforeSlide,
+      vertical,
+      alignPaginationOpposite,
       ...props
     } = this.props;
     const { items, activeSlide } = this.state;
@@ -153,26 +158,28 @@ export class Carousel extends React.Component {
     const itemsWithoutClones = items.filter(item => !item.clone);
 
     return (
-      <div className={`${styles.carousel} ${this.themeClass} ${className || ''}`} {...props}>
+      <div className={`${styles.carousel} ${this.themeClass} ${vertical ? styles.vertical : styles.horizontal} ${className || ''}`} {...props}>
         {Array.isArray(children) && children.filter((ch) => ch.type === Background)}
         {React.Children.map(items, (ch, index) => this._renderItem(ch, index))}
         {!hidePagination && <Pagination
           slides={items}
           activeSlide={activeSlide}
+          vertical={vertical}
+          alignOpposite={alignPaginationOpposite}
         />}
         {items.length > 1 && (
           <React.Fragment>
             <Arrow
               onClick={() => this.prev()}
               disabled={!looped && activeSlide === 0}
-              renderArrow={leftArrow}
-              direction="left"
+              renderArrow={prevArrow}
+              direction={vertical ? TOP : LEFT}
             />
             <Arrow
               onClick={() => this.next()}
               disabled={!looped && activeSlide === itemsWithoutClones.length - 1}
-              renderArrow={rightArrow}
-              direction="right"
+              renderArrow={nextArrow}
+              direction={vertical ? BOTTOM : RIGHT}
             />
           </React.Fragment>
         )}
@@ -191,17 +198,19 @@ Carousel.propTypes = {
     PropTypes.object
   ]),
   looped: PropTypes.bool.isRequired,
-  leftArrow: PropTypes.oneOfType([
+  prevArrow: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element
   ]),
-  rightArrow: PropTypes.oneOfType([
+  nextArrow: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element
   ]),
   hidePagination: PropTypes.bool,
   afterSlide: PropTypes.func,
-  beforeSlide: PropTypes.func
+  beforeSlide: PropTypes.func,
+  vertical: PropTypes.bool,
+  alignPaginationOpposite: PropTypes.bool
 };
 
 Carousel.defaultProps = {
@@ -211,9 +220,11 @@ Carousel.defaultProps = {
   interval: null,
   children: null,
   looped: true,
-  leftArrow: null,
-  rightArrow: null,
+  prevArrow: null,
+  nextArrow: null,
   hidePagination: false,
   afterSlide() {},
-  beforeSlide() {}
+  beforeSlide() {},
+  vertical: false,
+  alignPaginationOpposite: false
 };

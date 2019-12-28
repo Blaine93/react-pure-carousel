@@ -21,8 +21,6 @@ export const Caption = ({
     return styles;
   };
 
-  getStyles();
-
   return (
     <div
       className={`${styles.carouselCaption} ${className || ''}`}
