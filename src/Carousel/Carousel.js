@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { addEvent, removeEvent } from '../helpers/utilities';
 import { Item } from '../Item';
 import { Caption } from '../Caption';
 import { Background } from '../Background';
@@ -13,24 +14,34 @@ import styles from '../styles.css';
 export class Carousel extends React.Component {
   timer = null;
 
+  keyCodeMap = null;
+
   constructor(props) {
     super(props);
 
     this.state = {
       items: [],
       activeSlide: 0,
-      animatedSlide: 0
+      animatedSlide: 0,
+      hasFocus: false
+    };
+    this.keyCodeConfig = {
+      nextSlide: [39, 68, 38, 87],
+      previousSlide: [37, 65, 40, 83]
     };
   }
 
   componentDidMount() {
     const { interval, duration } = this.props;
+    this.bindEvents();
     if (interval) {
       this.timer = setInterval(() => this.next(), interval + (duration * 1000));
     }
+    this.keyCodeMap = this.getKeyCodeMap(this.keyCodeConfig);
   }
 
   componentWillUnmount() {
+    this.unbindEvents();
     if (this.timer) {
       clearInterval(this.timer);
     }
@@ -135,6 +146,56 @@ export class Carousel extends React.Component {
     });
   }
 
+  handleFocus = () => {
+    const { hasFocus } = this.state;
+    if (!hasFocus) {
+      this.setState({ hasFocus: true });
+    }
+  }
+
+  handleBlur = () => {
+    const { hasFocus } = this.state;
+    if (hasFocus) {
+      this.setState({ hasFocus: false });
+    }
+  }
+
+  bindEvents = () => {
+    addEvent(document, 'keydown', this.handleKeyPress);
+  }
+
+  unbindEvents = () => {
+    removeEvent(document, 'keydown', this.handleKeyPress);
+  }
+
+  handleKeyPress = (e) => {
+    const { enableKeyboardControls } = this.props;
+    const { hasFocus } = this.state;
+    if (hasFocus && enableKeyboardControls) {
+      const actionName = this.keyCodeMap[e.keyCode];
+      switch (actionName) {
+        case 'nextSlide':
+          this.next();
+          break;
+        case 'previousSlide':
+          this.prev();
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  getKeyCodeMap = (keyCodeConfig) => {
+    const keyCodeMap = {};
+    Object.keys(keyCodeConfig).forEach(actionName => {
+      keyCodeConfig[actionName].forEach(
+        keyCode => (keyCodeMap[keyCode] = actionName)
+      );
+    });
+    return keyCodeMap;
+  }
+
   render() {
     const {
       className,
@@ -147,6 +208,9 @@ export class Carousel extends React.Component {
       beforeSlide,
       vertical,
       alignPaginationOpposite,
+      theme,
+      duration,
+      enableKeyboardControls,
       ...props
     } = this.props;
     const { items, activeSlide } = this.state;
@@ -158,7 +222,12 @@ export class Carousel extends React.Component {
     const itemsWithoutClones = items.filter(item => !item.clone);
 
     return (
-      <div className={`${styles.carousel} ${this.themeClass} ${vertical ? styles.vertical : styles.horizontal} ${className || ''}`} {...props}>
+      <div
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+        tabIndex={0}
+        className={`${styles.carousel} ${this.themeClass} ${vertical ? styles.vertical : styles.horizontal} ${className || ''}`} {...props}
+      >
         {Array.isArray(children) && children.filter((ch) => ch.type === Background)}
         {React.Children.map(items, (ch, index) => this._renderItem(ch, index))}
         {!hidePagination && <Pagination
@@ -210,7 +279,8 @@ Carousel.propTypes = {
   afterSlide: PropTypes.func,
   beforeSlide: PropTypes.func,
   vertical: PropTypes.bool,
-  alignPaginationOpposite: PropTypes.bool
+  alignPaginationOpposite: PropTypes.bool,
+  enableKeyboardControls: PropTypes.bool
 };
 
 Carousel.defaultProps = {
@@ -226,5 +296,6 @@ Carousel.defaultProps = {
   afterSlide() {},
   beforeSlide() {},
   vertical: false,
-  alignPaginationOpposite: false
+  alignPaginationOpposite: false,
+  enableKeyboardControls: true
 };

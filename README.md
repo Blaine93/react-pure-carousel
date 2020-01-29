@@ -66,6 +66,7 @@ class Example extends Component {
 | beforeSlide | func |  | Hook to be called before a slide is changed |
 | vertical | bool | false | Vertical mode for Carousel |
 | alignPaginationOpposite | bool | false | Whether display pagination on the opposite side of Carousel or not |
+| enableKeyboardControls | bool | true | When set to true will enable keyboard controls when the carousel has focus. If the carousel does not have focus, keyboard controls will be ignored |
 ### Carousel.Background
 #### Layer for carousel static background
 | Name | Type | Default | Description |
@@ -83,6 +84,11 @@ class Example extends Component {
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | alignItems | string | 'center' | Alignment of the items inside Item. Can get the following values: `center`, `top`, `bottom` |
+### Keyboard controls
+| Key | Action |
+| --- | --- |
+| Right/Up Arrow or D/W key | Next slide |
+| Left/Down Arrow or A/S key | Previous slide |
 
 ## License
 

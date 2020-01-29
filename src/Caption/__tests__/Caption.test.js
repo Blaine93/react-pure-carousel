@@ -29,15 +29,15 @@ describe('<Caption />', () => {
     expect(styles['justifyContent']).toEqual('flex-start');
   });
 
-  it('should align content at the top', () => {
+  it('should align content at the center', () => {
     const wrapper = shallow(
       <Caption
         {...props}
-        alignItems="top"
+        alignItems="center"
       />
     );
     const styles = wrapper.find('div').prop('style');
-    expect(styles['justifyContent']).toEqual('flex-start');
+    expect(styles['justifyContent']).toEqual('center');
   });
 
   it('should align content at the bottom', () => {

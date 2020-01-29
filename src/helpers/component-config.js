@@ -16,8 +16,14 @@ export default {
       interval: 5000,
       children: <div className="element">Carousel</div>,
       looped: true,
-      leftArrow: <span className="leftArrow">left</span>,
-      rightArrow: <span className="rightArrow">right</span>
+      prevArrow: <span className="leftArrow">left</span>,
+      nextArrow: <span className="rightArrow">right</span>,
+      hidePagination: false,
+      afterSlide: () => {},
+      beforeSlide: () => {},
+      vertical: false,
+      alignPaginationOpposite: false,
+      enableKeyboardControls: true
     },
   },
   Background: {
@@ -58,7 +64,9 @@ export default {
     component: Pagination,
     props: {
       slides: [],
-      activeSlide: 0
+      activeSlide: 0,
+      vertical: false,
+      alignOpposite: false
     }
   }
 };
