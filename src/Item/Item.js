@@ -12,6 +12,7 @@ export const Item = ({
   duration = 1,
   backgroundColor,
   backgroundImage,
+  alignItems,
   ...props
 }) => {
   const getStyles = () => {
@@ -29,6 +30,14 @@ export const Item = ({
         OTransitionDuration: `${duration}s`,
         transitionDuration: `${duration}s`
       };
+    }
+    if (alignItems) {
+      let align = {
+        'center': alignItems === 'center',
+        'flex-start': alignItems === 'top',
+        'flex-end': alignItems === 'bottom'
+      };
+      styles = { ...styles, justifyContent: Object.keys(align).find(index => align[index]) };
     }
     return styles;
   };
@@ -64,7 +73,8 @@ Item.propTypes = {
     PropTypes.object
   ]),
   backgroundColor: PropTypes.string,
-  backgroundImage: PropTypes.string
+  backgroundImage: PropTypes.string,
+  alignItems: PropTypes.string
 };
 
 Item.defaultProps = {
@@ -75,5 +85,6 @@ Item.defaultProps = {
   duration: 1,
   className: null,
   backgroundColor: null,
-  backgroundImage: null
+  backgroundImage: null,
+  alignItems: 'center'
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { addEvent, removeEvent } from '../helpers/utilities';
 import { Item } from '../Item';
-import { Caption } from '../Caption';
 import { Background } from '../Background';
 import { Arrow } from '../Arrow';
 import { Pagination } from '../Pagination';
@@ -81,8 +80,6 @@ export class Carousel extends React.Component {
   }
 
   static Item = Item;
-
-  static Caption = Caption;
 
   static Background = Background;
 
@@ -226,7 +223,8 @@ export class Carousel extends React.Component {
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         tabIndex={0}
-        className={`${styles.carousel} ${this.themeClass} ${vertical ? styles.vertical : styles.horizontal} ${className || ''}`} {...props}
+        className={`${styles.carousel} ${this.themeClass} ${vertical ? styles.vertical : styles.horizontal} ${className || ''}`}
+        {...props}
       >
         {Array.isArray(children) && children.filter((ch) => ch.type === Background)}
         {React.Children.map(items, (ch, index) => this._renderItem(ch, index))}

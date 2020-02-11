@@ -158,6 +158,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .carousel.horizontal .carouselItem {
@@ -171,7 +173,7 @@
 }
 
 .carouselItem.next {
-  display: block;
+  display: flex;
   -webkit-transition: 1s all ease;
   -o-transition: 1s all ease;
   transition: 1s all ease;
@@ -186,7 +188,7 @@
 }
 
 .carouselItem.prev {
-  display: block;
+  display: flex;
   -webkit-transition: 1s all ease;
   -o-transition: 1s all ease;
   transition: 1s all ease;
@@ -201,7 +203,7 @@
 }
 
 .carouselItem.active {
-  display: block;
+  display: flex;
   -webkit-transition: 1s all ease;
   -o-transition: 1s all ease;
   transition: 1s all ease;
@@ -236,13 +238,3 @@
   background-size: cover;
 }
 /* END Background Component */
-
-/* Caption Component */
-.carouselCaption {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-/* END Caption Component */

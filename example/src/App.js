@@ -10,23 +10,17 @@ export default class App extends Component {
         <div className="demo-carousel">
           <Carousel>
             <Carousel.Background src="https://cdn.dodowallpaper.com/full/671/wallpaper-outer-space-1.jpg" />
-            <Carousel.Item>
-              <Carousel.Caption alignItems="bottom">
-                <h2>Carousel with Space Background</h2>
-                <p>Made by React Pure Carousel</p>
-              </Carousel.Caption>
+            <Carousel.Item alignItems="bottom">
+              <h2>Carousel with Space Background</h2>
+              <p>Made by React Pure Carousel</p>
             </Carousel.Item>
-            <Carousel.Item>
-              <Carousel.Caption alignItems="bottom">
-                <h2>Carousel with Space Background</h2>
-                <p>Made by React Pure Carousel</p>
-              </Carousel.Caption>
+            <Carousel.Item alignItems="bottom">
+              <h2>Carousel with Space Background</h2>
+              <p>Made by React Pure Carousel</p>
             </Carousel.Item>
-            <Carousel.Item>
-              <Carousel.Caption alignItems="bottom">
-                <h2>Carousel with Space Background</h2>
-                <p>Made by React Pure Carousel</p>
-              </Carousel.Caption>
+            <Carousel.Item alignItems="bottom">
+              <h2>Carousel with Space Background</h2>
+              <p>Made by React Pure Carousel</p>
             </Carousel.Item>
           </Carousel>
         </div>
@@ -34,22 +28,16 @@ export default class App extends Component {
           <Carousel>
             <Carousel.Background src={bgImg} />
             <Carousel.Item>
-              <Carousel.Caption>
-                <p>Text 1</p>
-                <h5>Title 1</h5>
-              </Carousel.Caption>
+              <p>Text 1</p>
+              <h5>Title 1</h5>
             </Carousel.Item>
             <Carousel.Item>
-              <Carousel.Caption>
-                <p>Text 2</p>
-                <h5>Title 2</h5>
-              </Carousel.Caption>
+              <p>Text 2</p>
+              <h5>Title 2</h5>
             </Carousel.Item>
             <Carousel.Item>
-              <Carousel.Caption>
-                <p>Text 3</p>
-                <h5>Title 3</h5>
-              </Carousel.Caption>
+              <p>Text 3</p>
+              <h5>Title 3</h5>
             </Carousel.Item>
           </Carousel>
         </div>

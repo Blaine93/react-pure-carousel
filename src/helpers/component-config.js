@@ -3,7 +3,6 @@ import React from 'react';
 import { Carousel } from '../Carousel';
 import { Background } from '../Background';
 import { Item } from '../Item';
-import { Caption } from '../Caption';
 import { Arrow } from '../Arrow';
 import { Pagination } from '../Pagination';
 
@@ -44,12 +43,6 @@ export default {
       backgroundColor: '#FF0000',
       backgroundImage: 'path'
     },
-  },
-  Caption: {
-    component: Caption,
-    props: {
-      alignItems: 'center'
-    }
   },
   Arrow: {
     component: Arrow,

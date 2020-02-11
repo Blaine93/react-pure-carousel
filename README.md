@@ -28,22 +28,16 @@ class Example extends Component {
       <Carousel>
         <Carousel.Background />
         <Carousel.Item>
-          <Carousel.Caption>
-            <p>Text 1</p>
-            <h5>Title 1</h5>
-          </Carousel.Caption>
+          <p>Text 1</p>
+          <h5>Title 1</h5>
         </Carousel.Item>
         <Carousel.Item>
-          <Carousel.Caption>
-            <p>Text 2</p>
-            <h5>Title 2</h5>
-          </Carousel.Caption>
+          <p>Text 2</p>
+          <h5>Title 2</h5>
         </Carousel.Item>
         <Carousel.Item>
-          <Carousel.Caption>
-            <p>Text 3</p>
-            <h5>Title 3</h5>
-          </Carousel.Caption>
+          <p>Text 3</p>
+          <h5>Title 3</h5>
         </Carousel.Item>
       </Carousel>
     );
@@ -79,12 +73,10 @@ class Example extends Component {
 | --- | --- | --- | --- |
 | backgroundColor | string |  | Background color for certain carousel item |
 | backgroundImage | string |  | Background image for certain carousel item |
-### Carousel.Caption
-#### Component with custom content to display inside Carousel.Item with specific alignment
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
 | alignItems | string | 'center' | Alignment of the items inside Item. Can get the following values: `center`, `top`, `bottom` |
-### Keyboard controls
+
+## Keyboard controls
+
 | Key | Action |
 | --- | --- |
 | Right/Up Arrow or D/W key | Next slide |
