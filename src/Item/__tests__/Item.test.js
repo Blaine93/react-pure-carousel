@@ -18,17 +18,19 @@ describe('<Item />', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it('should have styles for backgroundColor and backgroundImage', () => {
+  it('should have styles for backgroundColor, backgroundImage and alignItems', () => {
     const wrapper = shallow(
       <Item
         {...props}
         backgroundColor="#FF0000"
         backgroundImage="image_src"
+        alignItems="bottom"
       />
     );
     const styles = wrapper.find('div').prop('style');
     expect(styles['backgroundImage']).toEqual('url(image_src)');
     expect(styles['backgroundColor']).toEqual('#FF0000');
+    expect(styles['justifyContent']).toEqual('flex-end');
   });
 
   it('should apply received duration for item', () => {
