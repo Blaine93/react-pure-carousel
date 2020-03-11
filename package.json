@@ -4,6 +4,7 @@
   "description": "Simple React Carousel Library",
   "author": "Blaine93 https://github.com/Blaine93",
   "license": "MIT",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Blaine93/react-pure-carousel.git"
@@ -48,6 +49,7 @@
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
     "@svgr/rollup": "^2.4.1",
+    "@types/react": "^16.9.23",
     "@typescript-eslint/eslint-plugin": "2.x",
     "@typescript-eslint/parser": "2.x",
     "babel-eslint": "10.x",
@@ -80,7 +82,10 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^1.6.2",
-    "rollup-plugin-url": "^1.4.0"
+    "rollup-plugin-url": "^1.4.0",
+    "tslint": "^6.0.0",
+    "tslint-react": "^4.2.0",
+    "typescript": "^3.8.3"
   },
   "files": [
     "dist"

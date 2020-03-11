@@ -1,0 +1,30 @@
+{
+  "extends": ["tslint:latest", "tslint-react"],
+  "linterOptions": {
+    "exclude": ["config/**/*.js", "node_modules/**/*.ts", "coverage/lcov-report/*.js"]
+  },
+  "rules": {
+    "max-line-length": [
+      true,
+      {
+        "limit": 140,
+        "ignore-pattern": "^import |^export {(.*?)}",
+        "check-strings": true,
+        "check-regex": true
+      }
+    ],
+    "indent": [true, "spaces", 2],
+    "member-access": false,
+    "quotemark": false,
+    "ordered-imports": false,
+    "trailing-comma": false,
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": false,
+    "no-submodule-imports": false,
+    "no-console": [true, "error"],
+    "jsx-boolean-value": false,
+    "jsx-no-multiline-js": false,
+    "no-empty": [true, "allow-empty-functions"],
+    "curly": [true, "ignore-same-line"]
+  }
+}
